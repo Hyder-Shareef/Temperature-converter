@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="converter-container">
+    <div class="converter-card">
+      <!-- Header Section -->
+      <header class="converter-header">
+        <div class="icon-badge" aria-hidden="true">
+          <svg class="thermometer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+            <circle cx="11.5" cy="18.5" r="1.5" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <h1 class="title">Temperature Converter</h1>
+        <p class="subtitle">Convert temperatures easily and accurately between Celsius, Fahrenheit, and Kelvin.</p>
+      </header>
+
+      <!-- Conversion Form -->
+      <form id="converter-form" class="converter-form" novalidate>
+        <!-- Input Group -->
+        <div class="form-group">
+          <label for="temperature-input" class="form-label">Temperature Value</label>
+          <div class="input-wrapper">
+            <input 
+              type="number" 
+              id="temperature-input" 
+              name="temperature" 
+              class="form-input" 
+              placeholder="e.g. 25" 
+              step="any"
+              autocomplete="off"
+              required
+            >
+            <span id="input-unit-indicator" class="input-unit-indicator">°C</span>
+          </div>
+          <div id="error-message" class="error-message hidden" role="alert" aria-live="polite"></div>
+        </div>
+
+        <!-- Unit Selectors -->
+        <div class="units-row">
+          <div class="form-group unit-group">
+            <label for="source-unit" class="form-label">From</label>
+            <div class="select-wrapper">
+              <select id="source-unit" name="sourceUnit" class="form-select">
+                <option value="celsius" selected>Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Swap Button -->
+          <div class="swap-wrapper">
+            <button type="button" id="swap-units-btn" class="swap-button" title="Swap units" aria-label="Swap units">
+              <svg class="swap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3L4 7l4 4"></path>
+                <path d="M4 7h16"></path>
+                <path d="M16 21l4-4-4-4"></path>
+                <path d="M20 17H4"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="form-group unit-group">
+            <label for="target-unit" class="form-label">To</label>
+            <div class="select-wrapper">
+              <select id="target-unit" name="targetUnit" class="form-select">
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Convert Button -->
+        <button type="submit" id="convert-btn" class="convert-button" disabled>
+          <span>Convert</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Result Section -->
+      <section id="result-section" class="result-section hidden" aria-live="polite">
+        <div class="result-card">
+          <div class="result-badge-row">
+            <span class="result-tag">Converted Result</span>
+          </div>
+          
+          <div class="result-primary">
+            <span id="result-value" class="result-number">--</span>
+            <span id="result-unit-symbol" class="result-symbol">°F</span>
+          </div>
+
+          <div class="result-divider"></div>
+
+          <div class="result-details">
+            <div class="comparison-row">
+              <span class="comparison-label">Equivalent:</span>
+              <span class="comparison-expression">
+                <strong id="original-display">--</strong>
+                <span class="comparison-equal">=</span>
+                <strong id="converted-display">--</strong>
+              </span>
+            </div>
+            <div class="formula-row">
+              <span class="formula-label">Formula:</span>
+              <code id="formula-display" class="formula-code">--</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Reference Footer -->
+      <footer class="converter-footer">
+        <p class="reference-note">Absolute Zero: 0 K = -273.15 °C = -459.67 °F</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
